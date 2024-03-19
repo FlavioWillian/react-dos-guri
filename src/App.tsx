@@ -1,6 +1,7 @@
 import './App.css'
 import { Banner } from './components/banner/bannerhome'
 import { AccordionComponent } from './components/accordion/accordionComponent'
+import { FormCep } from './components/formCep/formCep'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         alt='banner cortes cabelos masculinos'
         title='lp dos guri' />
       <AccordionComponent contentFaq={faq} />
+      <FormCep></FormCep>
     </>
   )
 }
