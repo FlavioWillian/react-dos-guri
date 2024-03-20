@@ -1,21 +1,24 @@
     import {
     FormLabel,
     Input,
-    Button,
-
-  } from '@chakra-ui/react'
+    Button
+  } 
+  from '@chakra-ui/react'
   import { Form, Formik } from 'formik';
+  import buscaCep from 'src/services/cep.ts'
   interface FormCepProps{
      cep?:string
   }
+  
 
 export const FormCep : React.FC<FormCepProps> = props => {
-    const { subscribeFormCep, isLoading = false } = props;
+    //const { subscribeFormCep, isLoading = false } = props;
+    const isLoading = false;
     return (
         <>
        <Formik
             initialValues={props}
-            validationSchema={props}
+            //validationSchema={props}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={(values, actions) => {
                 setTimeout(() => {
