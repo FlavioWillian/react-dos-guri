@@ -1,11 +1,13 @@
     import {
     FormLabel,
     Input,
-    Button
+    Button,
+    Box
   } 
   from '@chakra-ui/react'
   import { Form, Formik } from 'formik';
-  import buscaCep from 'src/services/cep.ts'
+  import { buscaCep } from '../../services/cep'; 
+  
   interface FormCepProps{
      cep?:string
   }
@@ -14,6 +16,19 @@
 export const FormCep : React.FC<FormCepProps> = props => {
     //const { subscribeFormCep, isLoading = false } = props;
     const isLoading = false;
+    const itemsCep = {
+          cep: '',
+          logradouro:'',
+          complemento: '',
+          bairro:'',
+          localidade:'',
+          uf:'',
+          ibge:'',
+          gia:'',
+          ddd:'',
+          siafi:''
+        };
+    console.log(itemsCep);
     return (
         <>
        <Formik
@@ -21,10 +36,13 @@ export const FormCep : React.FC<FormCepProps> = props => {
             //validationSchema={props}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={(values, actions) => {
+                const responseBuscaCep = buscaCep(values.cep);
+                itemsCep.bairro = responseBuscaCep?.bairro;
                 setTimeout(() => {
                   alert(JSON.stringify(values, null, 2))
                   actions.setSubmitting(false)
                 }, 1000)
+                console.log(responseBuscaCep);
             }}
             validateOnBlur
            validateOnChange
@@ -57,6 +75,9 @@ export const FormCep : React.FC<FormCepProps> = props => {
         </Form>
         );}}
         </Formik>
+         <Box>
+           {itemsCep.bairro}
+         </Box>
         </>
     );
 }
